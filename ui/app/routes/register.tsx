@@ -1,11 +1,12 @@
-import type { Route } from "./+types/login";
+import { Form } from "react-router";
+import type { Route } from "./+types/register";
 import { createUserSession } from "@/utils/session";
-import { auth } from "@/data/accounts";
+import { register } from "@/data/accounts";
 
 export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  const { ok, data: token, errors } = await auth(data);
+  const { ok, data: token, errors } = await register(data as any);
 
   if (!ok) return { errors };
 
@@ -19,17 +20,18 @@ export async function action({ request }: Route.ActionArgs) {
   });
 }
 
-export default function Login({ actionData }: Route.ComponentProps) {
+export default function Register({ actionData }: Route.ComponentProps) {
   const errors = actionData?.errors;
+
   return (
     <div>
-      <form method="post" action="/login">
+      <Form method="post">
         <input type="text" name="email" placeholder="Email" />
+        {errors?.email && <span>{errors.email[0]}</span>}
         <input type="password" name="password" placeholder="Password" />
-
-        {errors && <span>{errors}</span>}
+        {errors?.password && <span>{errors.password[0]}</span>}
         <button type="submit">Login</button>
-      </form>
+      </Form>
     </div>
   );
 }

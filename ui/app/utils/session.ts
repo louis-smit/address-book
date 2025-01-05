@@ -7,7 +7,7 @@ import * as jose from "jose";
 import { differenceInMinutes } from "date-fns";
 import { createClient } from "./client";
 import invariant from "tiny-invariant";
-import { refreshToken } from "@/data/auth";
+import { refreshToken } from "@/data/accounts";
 
 const DEFAULT_REDIRECT = "/";
 const USER_SESSION_KEY = "user-session";
@@ -126,7 +126,7 @@ export async function createUserSession({
     })
   );
 
-  return redirect(redirectTo, { headers });
+  throw redirect(redirectTo, { headers });
 }
 
 async function authenticateRequest(request: Request) {

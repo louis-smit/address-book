@@ -1,8 +1,8 @@
 defmodule AppWeb.API.SessionController do
   use AppWeb, :controller
 
-  alias App.Accounts
   alias App.Guardian
+  alias App.Accounts
 
   action_fallback AppWeb.FallbackController
 

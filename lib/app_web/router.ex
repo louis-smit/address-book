@@ -58,6 +58,9 @@ defmodule AppWeb.Router do
   scope "/api", AppWeb.API do
     pipe_through [:api]
 
+    post "/register", RegistrationController, :create
+
+
     post "/session", SessionController, :create
     post "/session/refresh", SessionController, :refresh
   end
