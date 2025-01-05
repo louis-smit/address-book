@@ -1,6 +1,7 @@
 import type { Route } from "./+types/login";
 import { createUserSession } from "@/utils/session";
 import { auth } from "@/data/accounts";
+import { Link } from "react-router";
 
 export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData();
@@ -31,6 +32,8 @@ export default function Login({ actionData }: Route.ComponentProps) {
         {errors && <span>{errors}</span>}
         <button type="submit">Login</button>
       </form>
+
+      <Link to="/register">Register</Link>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Form } from "react-router";
+import { Form, Link } from "react-router";
 import type { Route } from "./+types/register";
 import { createUserSession } from "@/utils/session";
 import { register } from "@/data/accounts";
@@ -32,6 +32,8 @@ export default function Register({ actionData }: Route.ComponentProps) {
         {errors?.password && <span>{errors.password[0]}</span>}
         <button type="submit">Login</button>
       </Form>
+
+      <Link to="/login">Login</Link>
     </div>
   );
 }
