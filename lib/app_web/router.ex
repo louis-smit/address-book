@@ -1,6 +1,5 @@
 defmodule AppWeb.Router do
   use AppWeb, :router
-  # use Pow.Phoenix.Router
 
   import AppWeb.UserAuth
 
@@ -59,7 +58,6 @@ defmodule AppWeb.Router do
     pipe_through [:api]
 
     post "/register", RegistrationController, :create
-
 
     post "/session", SessionController, :create
     post "/session/refresh", SessionController, :refresh
