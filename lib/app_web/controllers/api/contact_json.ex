@@ -1,4 +1,4 @@
-defmodule AppWeb.ContactJSON do
+defmodule AppWeb.API.ContactJSON do
   alias App.AddressBook.Contact
 
   @doc """

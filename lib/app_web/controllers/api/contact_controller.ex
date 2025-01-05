@@ -1,4 +1,4 @@
-defmodule AppWeb.ContactController do
+defmodule AppWeb.API.ContactController do
   use AppWeb, :controller
 
   alias App.Guardian

@@ -29,7 +29,7 @@ defmodule AppWeb.Router do
     get "/", PageController, :home
   end
 
-  scope "/api", AppWeb do
+  scope "/api", AppWeb.API do
     pipe_through :api_auth
 
     resources "/contacts", ContactController, except: [:new, :edit]
@@ -55,7 +55,7 @@ defmodule AppWeb.Router do
   ## Authentication routes
 
   scope "/api", AppWeb.API do
-    pipe_through [:api]
+    pipe_through :api
 
     post "/register", RegistrationController, :create
 
