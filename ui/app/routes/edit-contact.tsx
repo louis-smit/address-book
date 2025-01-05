@@ -1,9 +1,6 @@
 import { Form, redirect, useNavigate } from "react-router";
 import type { Route } from "./+types/edit-contact";
 
-// Experimental file stuff
-import { type FileUpload, parseFormData } from "@mjackson/form-data-parser";
-
 import { getContact, updateContact } from "../data/contacts";
 import { requireSession } from "~/utils/session";
 
@@ -24,31 +21,6 @@ export async function action({ request, params }: Route.ActionArgs) {
 
   return redirect(`/app/contacts/${params.contactId}`);
 }
-
-// export async function action({ request, params }: Route.ActionArgs) {
-//   const { apiClient } = await requireSession(request);
-//
-//   const uploadHandler = async (fileUpload: FileUpload) => {
-//     console.log("Got fileupload with name " + fileUpload.fieldName);
-//     if (fileUpload.fieldName === "avatar") {
-//       // process the upload and return a File
-//     }
-//   };
-//
-//   const formData = await parseFormData(request, uploadHandler);
-//
-//   const updates = Object.fromEntries(formData);
-//   const file = formData.get("avatar2") as File;
-//   console.log("Got file");
-//   console.log(JSON.stringify(file));
-//
-//   await updateContact(apiClient, params.contactId, {
-//     ...updates,
-//     avatar2: file,
-//   });
-//
-//   return redirect(`/app/contacts/${params.contactId}`);
-// }
 
 export default function EditContact({ loaderData }: Route.ComponentProps) {
   const { contact } = loaderData;
@@ -96,10 +68,6 @@ export default function EditContact({ loaderData }: Route.ComponentProps) {
           placeholder="https://example.com/avatar.jpg"
           type="text"
         />
-      </label>
-      <label>
-        <span>Avatar</span>
-        <input type="file" name="avatar2" />
       </label>
       <label>
         <span>Notes</span>

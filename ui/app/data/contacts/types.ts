@@ -3,7 +3,6 @@ export type ContactMutation = {
   first?: string;
   last?: string;
   avatar?: string;
-  avatar2?: File;
   twitter?: string;
   notes?: string;
   favorite?: boolean;
