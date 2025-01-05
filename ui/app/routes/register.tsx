@@ -6,14 +6,14 @@ import { register } from "@/data/accounts";
 export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  const { ok, data: token, errors } = await register(data as any);
+  const { ok, data: accessToken, errors } = await register(data as any);
 
   if (!ok) return { errors };
 
   return createUserSession({
     request,
     userSession: {
-      accessToken: token,
+      accessToken,
     },
     remember: true,
     redirectTo: "/app",
