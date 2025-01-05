@@ -3,8 +3,6 @@ defmodule App.Accounts do
   The Accounts context.
   """
 
-  require IEx
-
   import Ecto.Query, warn: false
   alias App.Repo
 
