@@ -21,18 +21,8 @@ export default function Login() {
   return (
     <div>
       <form method="post" action="/login">
-        <input
-          value="louis@appsquare.dev"
-          type="text"
-          name="email"
-          placeholder="Email"
-        />
-        <input
-          value="Secret1234!!"
-          type="password"
-          name="password"
-          placeholder="Password"
-        />
+        <input type="text" name="email" placeholder="Email" />
+        <input type="password" name="password" placeholder="Password" />
         <button type="submit">Login</button>
       </form>
     </div>

@@ -1,8 +1,6 @@
 defmodule AppWeb.ContactController do
   use AppWeb, :controller
 
-  require IEx
-
   alias App.Guardian
   alias App.AddressBook
   alias App.AddressBook.Contact
