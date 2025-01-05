@@ -12,9 +12,7 @@ export async function action({ request }: Route.ActionArgs) {
 
   return createUserSession({
     request,
-    userSession: {
-      accessToken,
-    },
+    userSession: { accessToken },
     remember: true,
     redirectTo: "/app",
   });
