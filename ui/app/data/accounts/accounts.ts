@@ -33,8 +33,12 @@ export async function refreshToken(token: string) {
     },
   });
 
+  if (!result.ok) {
+    return { ok: false } as const;
+  }
+
   const refreshedToken = await result.text();
-  return refreshedToken;
+  return { ok: true, data: refreshedToken } as const;
 }
 
 export async function register(data: RegisterMutation) {

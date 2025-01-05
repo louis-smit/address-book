@@ -148,7 +148,9 @@ async function authenticateRequest(request: Request) {
 
   // Token is close to expiring so we need to refresh it
   if (diffInMinutes <= MIN_TOKEN_LIFETIME_IN_MINUTES) {
-    const updatedToken = await refreshToken(accessToken);
+    const { ok, data: updatedToken } = await refreshToken(accessToken);
+
+    if (!ok) throw await logout(request, { login: true });
 
     const updatedSession: UserSession = {
       accessToken: updatedToken,
