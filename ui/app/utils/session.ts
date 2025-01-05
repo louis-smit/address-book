@@ -10,7 +10,6 @@ import invariant from "tiny-invariant";
 import { refreshToken } from "@/data/accounts";
 
 const DEFAULT_REDIRECT = "/";
-const USER_SESSION_KEY = "user-session";
 
 /**
  * This should be used any time the redirect path is user-provided
@@ -69,18 +68,13 @@ export type UserSession = {
   accessToken: string;
 };
 
-// TODO
-export async function getUserSession(request: Request) {
-  const session = await getSession(request);
-}
-
 export async function requireSession(
   request: Request,
   redirectTo: string = new URL(request.url).pathname
 ) {
   const session = await getSession(request);
   const accessToken = session.get("accessToken");
-  //
+
   if (!session || !accessToken) {
     const searchParams = new URLSearchParams([["redirect", redirectTo]]);
     throw redirect(`/login?${searchParams}`);
@@ -104,11 +98,6 @@ export async function createUserSession({
   remember: boolean;
   redirectTo: string;
 }) {
-  console.log(
-    "Creating session with user session: " +
-      JSON.stringify(userSession, null, 2)
-  );
-
   const session = await getSession(request);
   session.set("accessToken", userSession.accessToken);
 

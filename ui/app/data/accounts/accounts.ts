@@ -8,7 +8,7 @@ export type RegisterMutation = {
 
 export type LoginMutation = Partial<RegisterMutation>;
 
-export async function auth(data: LoginMutation) {
+export async function login(data: LoginMutation) {
   const result = await apiClient.post(`api/session`, {
     json: {
       user: {
@@ -18,12 +18,13 @@ export async function auth(data: LoginMutation) {
     },
   });
 
-  const message = await result.text();
-
   if (!result.ok) {
-    return { ok: false, errors: message } as const;
+    const errors = await result.text();
+    return { ok: false, errors } as const;
   }
-  return { ok: true, data: message } as const;
+
+  const token = await result.text();
+  return { ok: true, data: token } as const;
 }
 
 export async function refreshToken(token: string) {

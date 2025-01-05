@@ -1,19 +1,19 @@
 import { Form, Link } from "react-router";
 import type { Route } from "./+types/login";
 import { createUserSession } from "@/utils/session";
-import { auth } from "@/data/accounts";
+import { login } from "@/data/accounts";
 
 export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  const { ok, data: token, errors } = await auth(data);
+  const { ok, data: accessToken, errors } = await login(data);
 
   if (!ok) return { errors };
 
   return createUserSession({
     request,
     userSession: {
-      accessToken: token,
+      accessToken,
     },
     remember: true,
     redirectTo: "/app",
